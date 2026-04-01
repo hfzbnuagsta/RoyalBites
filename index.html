@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--/* memastikan tampilan responsif pada perangkat mobile */-->
+    <title>Royal Bites</title>
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- feather icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!--/* menambahkan library Feather Icons untuk ikon-ikon yang digunakan dalam navbar */-->
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- navbar -->
+    <nav class="navbar">
+      <!--/* elemen nav dengan kelas "navbar" yang berfungsi sebagai container untuk seluruh elemen navbar */-->
+      <a href="#" class="navbar-logo">Royal <span>Bites</span></a>
+
+      <!-- /* link navigasi utama seperti Home, Menu, About Us, dan Contact Us */ -->
+      <div class="navbar-nav">
+        <a href="#home">Home</a>
+        <a href="#about">Tentang Kami</a>
+        <a href="#menu">Menu</a>
+        <a href="#contact">Kontak</a>
+      </div>
+
+      <div class="navbar-ext">
+        <!--/* ikon-ikon eksternal seperti search, shopping cart, dan hamburger menu */-->
+        <a href="#" id="search"><i data-feather="search"></i></a>
+        <a href="#" id="shopping-cart"><i data-feather="shopping-cart"></i></a>
+        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+      </div>
+    </nav>
+    <!-- navbar end -->
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">  <!-- elemen section dengan kelas "hero" yang berfungsi sebagai bagian utama dari halaman, biasanya digunakan untuk menampilkan konten yang menarik perhatian pengunjung seperti gambar atau teks besar -->
+      <main class="content">
+        <h1>Selamat Datang di Royal <span>Bites</span></h1>
+        <p>Nikmati kelezatan kuliner Nusantara dengan sentuhan modern yang menggugah selera. Temukan cita rasa unik dari jajanan tradisional Indonesia yang melegenda.</p>
+        <a href="#menu" class="cta">Beli Sekarang</a>
+      </main>
+    </section>
+<!-- Hero Section end -->
+
+<!-- About Section -->
+<section class="about" id="about">  <!-- elemen section dengan kelas "about" yang berfungsi sebagai bagian yang memberikan informasi tentang perusahaan atau produk yang ditawarkan -->
+    <h2><span>Tentang</span> Kami</h2>
+    
+    <div class="row">  <!-- elemen div dengan kelas "row" yang berfungsi sebagai container untuk mengatur tata letak gambar dan teks dalam bagian about -->
+      <div class="about-img">
+        <img src="https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,f_auto,q_auto:best,w_640/v1634025439/01hgm3dq8nr8jkf174hkgdx1v3.jpg" alt="About Us">
+      </div>
+      <div class="content">  <!-- elemen div dengan kelas "content" yang berfungsi sebagai container untuk teks yang menjelaskan tentang perusahaan atau produk yang ditawarkan -->
+        <h3>Melestarikan Rasa, Merayakan Nama</h3>
+        <p>Royal Bites hadir untuk membawa Anda dalam perjalanan rasa melintasi kuliner Nusantara yang paling unik. Kami percaya bahwa makanan bukan hanya soal rasa, tapi juga cerita dan tradisi yang melekat padanya.</p>
+        <p>Berawal dari kecintaan kami pada jajanan tradisional Indonesia yang memiliki nama-nama nyeleneh namun melegenda seperti Tolpit, Peler Bedebu, hingga Ketela Bajingan kami ingin menghadirkan kembali memori manis tersebut dengan kualitas bahan terbaik. Setiap gigitan adalah bentuk apresiasi kami terhadap kreativitas nenek moyang dalam meracik bahan lokal menjadi hidangan yang tak terlupakan.</p>
+      </div>
+    </div>
+</section>
+<!-- About Section end -->
+
+<!-- Menu Section -->
+<section class="menu" id="menu">
+  <h2><span>Menu</span> Kami</h2>
+  <div class="row"> <!-- elemen-elemen menu akan ditempatkan di sini -->
+    <div class="menu-card"> <!-- elemen div dengan kelas "menu-card" yang berfungsi sebagai container untuk setiap item menu yang ditampilkan -->
+      <img src="WhatsApp Image 2026-04-01 at 15.57.38.jpeg" alt="Latte" class="menu-card-img">
+      <h3 class="menu-card-title">- Kue Kontol Kejepit -</h3>
+      <p class="menu-card-description">Camilan khas Kepulauan Seribu. Terbuat dari adonan tepung terigu yang dibentuk menyerupai bentuk alat kelamin pria, lalu digoreng hingga renyah. Rasanya gurih dan sedikit manis.</p>
+      <p class="menu-card-price">Rp. 2.500</p>
+    </div>
+    <div class="menu-card"> <!-- elemen div dengan kelas "menu-card" yang berfungsi sebagai container untuk setiap item menu yang ditampilkan -->
+      <img src="WhatsApp Image 2026-04-01 at 15.58.55.jpeg" alt="Latte" class="menu-card-img">
+      <h3 class="menu-card-title">- Kue Peler Bedebu -</h3>
+      <p class="menu-card-description">Camilan manis khas Kepulauan Seribu. Ini adalah kue klepon versi lokal yang terbuat dari ubi manis yang dikukus, dihaluskan, dan diisi gula merah, lalu ditaburi kelapa parut. Teksturnya sangat lembut dan lumer di mulut.</p>
+      <p class="menu-card-price">Rp. 10.000</p>
+    </div>
+
+    <div class="menu-card"> <!-- elemen div dengan kelas "menu-card" yang berfungsi sebagai container untuk setiap item menu yang ditampilkan -->
+      <img src="WhatsApp Image 2026-04-01 at 16.03.04.jpeg" alt="Latte" class="menu-card-img">
+      <h3 class="menu-card-title">- Nasi Kentut -</h3>
+      <p class="menu-card-description">Kuliner asal Medan ini sama sekali tidak berbau busuk. Namanya diambil dari penggunaan daun kentut (Paederia foetida) sebagai campuran nasi yang memberikan aroma khas dan khasiat kesehatan, seperti melancarkan pencernaan. Biasanya disajikan dengan ikan teri, ayam goreng, dan sambal terasi.</p>
+      <p class="menu-card-price">Rp. 20.000</p>
+    </div>
+
+    <div class="menu-card"> <!-- elemen div dengan kelas "menu-card" yang berfungsi sebagai container untuk setiap item menu yang ditampilkan -->
+      <img src="WhatsApp Image 2026-04-01 at 16.08.06.jpeg" alt="Latte" class="menu-card-img">
+      <h3 class="menu-card-title">- Mie Lendir -</h3>
+      <p class="menu-card-description">Makanan khas Kepulauan Riau (Batam/Tanjungpinang). Terdiri dari mie kuning yang disiram kuah kacang kental berwarna kecokelatan (yang menyerupai lendir). Rasanya manis gurih dengan topping tauge dan telur rebus.</p>
+      <p class="menu-card-price">Rp. 15.000</p>
+    </div>
+
+    <div class="menu-card"> <!-- elemen div dengan kelas "menu-card" yang berfungsi sebagai container untuk setiap item menu yang ditampilkan -->
+      <img src="WhatsApp Image 2026-04-01 at 16.12.03.jpeg" alt="Latte" class="menu-card-img">
+      <h3 class="menu-card-title">- Es Dawet Jembut Kecabut -</h3>
+      <p class="menu-card-description">Minuman khas Kepulauan Seribu. Terbuat dari tepung beras yang diolah menjadi bola-bola kecil, lalu dimasak dengan gula merah dan santan. Rasanya manis dan lezat.</p>
+      <p class="menu-card-price">Rp. 10.000</p>
+    </div>
+
+    <div class="menu-card"> <!-- elemen div dengan kelas "menu-card" yang berfungsi sebagai container untuk setiap item menu yang ditampilkan -->
+      <img src="WhatsApp Image 2026-04-01 at 16.17.06.jpeg" alt="Latte" class="menu-card-img">
+      <h3 class="menu-card-title">- Ketela Bajingan -</h3>
+      <p class="menu-card-description">Camilan khas Kepulauan Seribu. Terbuat dari ketela pohon yang dipotong-potong, lalu digoreng dengan bumbu rempah khas. Rasanya gurih dan renyah.</p>
+      <p class="menu-card-price">Rp. 12.000</p>
+    </div>
+    
+  </div>
+</section>
+<!-- Menu Section end -->
+
+<!-- Contact Section -->
+<section class="contact" id="contact">
+  <h2><span>Kontak</span> Kami</h2>
+
+  <div class="row"> <!-- elemen-elemen kontak akan ditempatkan di sini -->
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15860.043428722282!2d107.11225600000002!3d-6.392599999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6999ee110e7d1f%3A0xa1db099ed9bfa5df!2sPasar%20Mega%20Regency!5e0!3m2!1sid!2sid!4v1775040169466!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
+
+    <form action="">
+      <div class="input-group">
+        <i data-feather="user"></i>
+        <input type="text" placeholder="Nama">
+      </div>
+      <div class="input-group">
+        <i data-feather="mail"></i>
+        <input type="email" placeholder="Email">
+      </div>
+      <div class="input-group">
+        <i data-feather="phone"></i>
+        <input type="tel" placeholder="Telepon">
+      </div>
+      <button type="submit" class="btn">Kirim Pesan</button>
+    </form>
+  </div>
+</section>
+<!-- Contact Section end -->
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="socials">
+      <a href="#"><i data-feather="facebook"></i></a>
+      <a href="#"><i data-feather="twitter"></i></a>
+      <a href="#"><i data-feather="instagram"></i></a>
+    </div>
+
+    <div class="links">
+      <a href="#home">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#about">Tentang Kami</a>
+      <a href="#contact">Kontak</a>
+    </div>
+
+    <div class="credit">
+      <p>Created by <a href="">HafizBanuAgusta</a>. | &copy; 2026. </p>
+    </div>
+
+  </div>
+</footer>
+<!-- Footer end -->
+
+    <!-- feather icons -->
+    <script>
+      feather.replace(); /* menggantikan elemen-elemen dengan atribut data-feather dengan ikon yang sesuai dari library Feather Icons */
+    </script>
+
+    <!-- My JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>

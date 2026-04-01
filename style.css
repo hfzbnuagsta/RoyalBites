@@ -1,0 +1,477 @@
+/* variabel global untuk warna dan gaya lainnya */
+:root {
+  --primary: #b6895b;
+  --bg: black;
+}
+
+* {
+  /* mengatur gaya untuk semua elemen pada halaman */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* memastikan bahwa padding dan border tidak mempengaruhi ukuran elemen*/
+  outline: none; /* menghilangkan garis border pada elemen input, textarea, dan button*/
+  border: none; /* menghilangkan border pada elemen input, textarea, dan button*/
+  text-decoration: none; /* menghilangkan garis bawah pada elemen link*/
+}
+
+html {
+  scroll-behavior: smooth; /* memberikan efek scroll yang halus saat pengguna mengklik link yang mengarah ke bagian lain dalam halaman */
+}
+
+/* mengatur gaya untuk elemen body pada halaman */
+body {
+  font-family:
+    "Poppins", sans-serif; /* mengatur jenis font untuk seluruh halaman menggunakan*/
+  background: var(--bg);
+  color: white;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex; /* menggunakan flexbox untuk mengatur tata letak elemen-elemen dalam navbar */
+  justify-content: space-between; /* memberikan jarak yang sama antara elemen-elemen dalam navbar */
+  align-items: center; /* menyelaraskan elemen-elemen dalam navbar secara vertikal */
+  padding: 1.4rem 7%; /* memberikan padding di sekitar elemen-elemen dalam navbar, dengan 1.4rem untuk atas dan bawah, dan 7% untuk kiri dan kanan */
+  background-color: rgba(
+    1,
+    1,
+    1,
+    0.8
+  ); /* memberikan warna latar belakang dengan sedikit transparansi untuk efek visual yang lebih menarik */
+  border-bottom: 1px solid #513c28; /* memberikan garis bawah pada navbar untuk memisahkan dari konten di bawahnya */
+  position: fixed; /* membuat navbar tetap di posisi tetap */
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 9999; /*memastikan navbar tetap di atas elemen lainnya*/
+}
+
+/* mengatur gaya untuk logo dalam navbar */
+.navbar .navbar-logo {
+  font-size: 2rem;
+  font-weight: 1000;
+  color: white;
+  font-style: italic;
+}
+
+/* mengatur gaya untuk bagian "Kenangan" dalam logo */
+.navbar .navbar-logo span {
+  color: var(
+    --primary
+  ); /* memberikan warna yang berbeda pada bagian "Kenangan" dalam logo untuk menonjolkan dan menciptakan kontras visual */
+}
+
+/* mengatur gaya untuk link navigasi utama dalam navbar */
+.navbar .navbar-nav a {
+  margin: 0 1rem; /* memberikan jarak horizontal antara link navigasi utama */
+  font-size: 1.3rem; /* mengatur ukuran font untuk link navigasi utama agar lebih*/
+  color: white;
+  display: inline-block; /* memastikan bahwa link navigasi utama ditampilkan sebagai elemen inline untuk menjaga tata letak yang rapi */
+  transition: 0.3s; /* menambahkan efek transisi untuk perubahan warna saat hover */
+}
+
+/* memberikan efek hover pada link navigasi utama untuk meningkatkan interaktivitas dan memberikan umpan balik visual kepada pengguna */
+.navbar .navbar-nav a:hover {
+  color: var(--primary);
+}
+
+/* menambahkan elemen pseudo ::after untuk membuat garis bawah yang muncul saat link navigasi utama dihover */
+.navbar .navbar-nav a::after {
+  content: ""; /* membuat elemen pseudo tanpa konten */
+  display: block; /* menampilkan elemen pseudo sebagai blok untuk membuat garis bawah */
+  padding-bottom: 0.5rem; /* memberikan jarak antara teks link dan garis bawah */
+  border-bottom: 0.1rem solid var(--primary); /* membuat garis bawah dengan warna transparan sebagai default */
+  transition: 0.3s linear; /* menambahkan efek transisi untuk perubahan skala saat hover */
+  transform: scaleX(
+    0
+  ); /* menyembunyikan garis bawah dengan skala horizontal 0 sebagai default */
+}
+
+/* mengubah gaya elemen pseudo ::after saat link navigasi utama dihover untuk menampilkan garis bawah */
+.navbar .navbar-nav a:hover::after {
+  transform: scaleX(
+    1
+  ); /* menampilkan garis bawah dengan skala horizontal 1 saat hover */
+}
+
+/* mengatur gaya untuk ikon-ikon eksternal dalam navbar */
+.navbar .navbar-ext a {
+  margin: 0 0.5rem; /* memberikan jarak horizontal antara ikon-ikon eksternal */
+  color: white;
+}
+
+/* memberikan efek hover pada ikon-ikon eksternal untuk meningkatkan interaktivitas dan memberikan umpan balik visual kepada pengguna */
+.navbar .navbar-ext a:hover {
+  color: var(--primary);
+}
+
+/* mengatur gaya untuk ikon hamburger menu yang digunakan pada tampilan tablet dan ponsel */
+#hamburger-menu {
+  display: none; /* menyembunyikan ikon hamburger menu pada tampilan desktop */
+}
+
+/* Hero Section */
+
+/* Membuat Latar Belakang */
+.hero {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url("WhatsApp Image 2026-04-01 at 19.27.46.jpeg");
+  background-repeat: no-repeat; /* memastikan bahwa gambar latar belakang tidak diulang */
+  background-size: cover; /* memastikan bahwa gambar latar belakang menutupi seluruh area hero section tanpa merubah rasio aslinya */
+  background-position: center; /* memastikan bahwa gambar latar belakang diposisikan di tengah hero section untuk tampilan yang lebih seimbang */
+  position: relative; /* mengubah posisi hero section menjadi relative untuk memungkinkan penempatan elemen pseudo ::after di atasnya */
+}
+
+/* Membuat Gradasi Agar Gambar Tidak Terlihat Terpotong */
+.hero::after {
+  content: ""; /* membuat elemen pseudo ::after tanpa konten untuk menambahkan lapisan overlay pada hero section */
+  display: block; /* menampilkan elemen pseudo sebagai blok untuk membuat lapisan overlay yang menutupi seluruh area hero section */
+  position: absolute; /* mengubah posisi elemen pseudo menjadi absolute untuk menempatkannya di atas gambar latar belakang */
+  width: 100%; /* membuat elemen pseudo mengambil seluruh lebar hero section */
+  height: 30%; /* membuat elemen pseudo mengambil seluruh tinggi hero section */
+  bottom: 0; /* menempatkan elemen pseudo di bagian bawah hero section untuk menciptakan efek gradasi yang muncul dari bawah ke atas */
+  background: linear-gradient(
+    0deg,
+    rgba(1, 1, 3, 1) 8%,
+    rgba(255, 255, 255, 0) 50%
+  ); /* memberikan warna latar belakang dengan transparansi untuk menciptakan efek overlay yang gelap pada gambar latar belakang */
+}
+
+/* mengatur gaya untuk konten dalam hero section */
+.hero .content {
+  padding: 1.4rem 7%;
+  max-width: 60rem;
+}
+
+/* mengatur gaya untuk judul utama dalam hero section */
+.hero .content h1 {
+  font-size: 5em;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5); /* memberikan efek bayangan pada teks untuk meningkatkan keterbacaan dan memberikan dimensi visual pada teks */
+  line-height: 1.2; /* mengatur jarak antara baris teks untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih rapi pada teks */
+}
+
+/* memberikan warna yang berbeda pada bagian "Kenangan" dalam judul untuk menonjolkan dan menciptakan kontras visual */
+.hero .content h1 span {
+  color: var(--primary);
+}
+
+/* mengatur gaya untuk paragraf dalam hero section */
+.hero .content p {
+  font-size: 1.6rem;
+  line-height: 1.4; /* mengatur jarak antara baris teks untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih rapi pada teks */
+  margin-top: 1rem; /* memberikan jarak antara paragraf dan elemen sebelumnya untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih rapi pada teks */
+  font-weight: 100; /* mengatur ketebalan font untuk memberikan tampilan yang lebih ringan dan elegan pada teks */
+  text-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5); /* memberikan efek bayangan pada teks untuk meningkatkan keterbacaan dan memberikan dimensi visual pada teks */
+  mix-blend-mode: difference; /* mengubah mode pencampuran warna untuk menciptakan efek visual yang lebih menarik pada teks dengan membuat warna teks berinteraksi dengan warna latar belakang */
+}
+
+/* mengatur gaya untuk tombol call-to-action dalam hero section */
+.hero .content .cta {
+  display: inline-block; /* menampilkan tombol call-to-action sebagai elemen inline untuk menjaga tata letak yang rapi */
+  padding: 1rem 3rem; /* memberikan padding di sekitar teks dalam tombol call-to-action untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih menarik pada tombol */
+  font-size: 1.4rem;
+  color: white;
+  background-color: var(--primary);
+  border-radius: 0.5rem; /* memberikan sudut yang melengkung pada tombol call-to-action untuk memberikan tampilan yang lebih lembut dan menarik */
+  box-sizing: 1px 1px 3px rgba(1, 1, 3, 0.5); /* memberikan efek bayangan pada tombol call-to-action untuk memberikan dimensi visual dan membuat tombol lebih menonjol */
+}
+
+/* About Section */
+/* mengatur gaya untuk Tentang, Menu, dan Kontak section */
+.about,
+.menu, .contact {
+  padding: 8rem 7% 1.4rem; /* memberikan padding di sekitar about section untuk memberikan ruang yang cukup antara konten dan elemen lainnya, dengan 10rem untuk atas, 1.4rem untuk bawah, dan 7% untuk kiri dan kanan */
+}
+
+/* mengatur gaya untuk judul dalam Tentang, Menu, dan Kontak section */
+.about h2,
+.menu h2, .contact h2 {
+  font-size: 2.6rem;
+  text-align: center;
+  margin-bottom: 3rem; /* memberikan jarak antara judul dan paragraf dalam about section untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih rapi pada about section */
+}
+
+/* memberikan warna yang berbeda pada bagian Tentang, Menu, dan Kontak dalam judul untuk menonjolkan dan menciptakan kontras visual */
+.about h2 span,
+.menu h2 span, .contact h2 span {
+  color: var(--primary);
+}
+
+/* mengatur gaya untuk baris dalam about section */
+.about .row {
+  display: flex; /* menggunakan flexbox untuk mengatur tata letak elemen-elemen dalam about section */
+}
+
+/* mengatur gaya untuk gambar dalam about section */
+.about .row .about-img {
+  flex: 1 1 45rem; /* memberikan fleksibilitas pada gambar dalam about section untuk menyesuaikan ukuran dan menjaga proporsi yang baik, dengan basis ukuran 45rem */
+}
+
+/* mengatur gaya untuk elemen gambar dalam about section */
+.about .row .about-img img {
+  width: 100%; /* membuat gambar mengambil seluruh lebar kontainer untuk memastikan bahwa gambar ditampilkan dengan baik dan responsif pada berbagai ukuran layar */
+}
+
+/* mengatur gaya untuk konten dalam about section */
+.about .row .content {
+  flex: 1 1 35rem; /* memberikan fleksibilitas pada konten dalam about section untuk menyesuaikan ukuran dan menjaga proporsi yang baik, dengan basis ukuran 45rem */
+  padding: 0 1rem; /* memberikan padding di sekitar konten dalam about section untuk memberikan ruang yang cukup antara teks dan elemen lainnya, dengan 2rem untuk kiri dan kanan */
+}
+
+/* mengatur gaya untuk subjudul dalam about section */
+.about .row .content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem; /* memberikan jarak antara subjudul dan paragraf dalam about section untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih rapi pada about section */
+}
+
+/* mengatur gaya untuk paragraf dalam about section */
+.about .row .content p {
+  font-size: 1.4rem;
+  font-weight: 100; /* mengatur ketebalan font untuk memberikan tampilan yang lebih ringan dan elegan pada teks dalam about section */
+  line-height: 1.6; /* mengatur jarak antara baris teks untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih rapi pada about section */
+  margin-bottom: 0.8rem; /* memberikan jarak antara paragraf dan elemen lainnya dalam about section untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih rapi pada about section */
+}
+
+/*Menu Section*/
+/* mengatur gaya untuk judul dalam menu section */
+.menu h2 {
+  margin-bottom: 1rem; /* memberikan jarak antara judul dan paragraf dalam menu section untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih rapi pada menu section */
+}
+
+/* mengatur gaya untuk paragraf dalam menu dan contact section */
+.menu p, .contact p {
+  text-align: center; /* mengatur teks dalam paragraf pada menu section agar rata tengah untuk memberikan tampilan yang lebih seimbang dan menarik pada menu section */
+  max-width: 30rem; /* membatasi lebar paragraf dalam menu section untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih rapi pada menu section */
+  margin: auto; /* memberikan margin otomatis pada paragraf dalam menu section untuk memusatkan paragraf secara horizontal dalam kontainer menu section */
+  font-weight: 100; /* mengatur ketebalan font untuk memberikan tampilan yang lebih ringan dan elegan pada teks dalam menu section */
+  line-height: 1.6; /* mengatur jarak antara baris teks untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih rapi pada menu section */
+}
+
+/* mengatur gaya untuk baris dalam menu section */
+.menu .row {
+  display: flex; /* menggunakan flexbox untuk mengatur tata letak elemen-elemen dalam menu section */
+  margin-top: 5rem; /* memberikan jarak antara baris dan elemen sebelumnya dalam menu section untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih rapi pada menu section */
+  justify-content: center; /* memberikan jarak yang sama antara elemen-elemen dalam menu section untuk menciptakan tampilan yang lebih seimbang dan menarik pada menu section */
+  flex-wrap: wrap; /* memungkinkan elemen-elemen dalam menu section untuk membungkus ke baris baru jika tidak muat dalam satu baris untuk memastikan bahwa konten tetap ditampilkan dengan baik pada berbagai ukuran layar */
+}
+
+.menu-card {
+  text-align: center; /* mengatur teks dalam elemen menu-card agar rata tengah untuk memberikan tampilan yang lebih seimbang dan menarik pada setiap item menu */
+  padding-bottom: 4rem; /* memberikan jarak antara elemen menu-card dan elemen lainnya dalam menu section untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih rapi pada setiap item menu dalam menu section */
+}
+
+.menu-card-price {
+  color: var(--primary); /* memberikan warna yang berbeda pada harga dalam menu-card untuk menonjolkan dan menciptakan kontras visual pada setiap item menu dalam menu section */
+}
+
+/* mengatur gaya untuk elemen menu-card dalam menu section */
+.menu .row .menu-card { 
+  text-align: center; /* mengatur teks dalam elemen menu-card agar rata tengah untuk memberikan tampilan yang lebih seimbang dan menarik pada setiap item menu dalam menu section */
+}
+
+/* mengatur gaya untuk gambar dalam elemen menu-card */
+.menu .row .menu-card img { 
+  width: 80%; /* membuat gambar dalam elemen menu-card mengambil seluruh lebar kontainer untuk memastikan bahwa gambar ditampilkan dengan baik dan responsif pada berbagai ukuran layar */
+  border-radius: 50%; /* memberikan sudut yang melengkung pada gambar dalam elemen menu-card untuk memberikan tampilan yang lebih lembut dan menarik pada setiap item menu */
+}
+
+/* mengatur gaya untuk judul dalam elemen menu-card */
+.menu .row .menu-card .menu-card-title { 
+  margin: 1.5rem auto 0.5rem; /* memberikan jarak antara judul dan elemen lainnya dalam elemen menu-card untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih rapi pada setiap item menu */
+}
+
+
+/* Contact Section */
+.contact .row {
+  display: flex; /* menggunakan flexbox untuk mengatur tata letak elemen-elemen dalam contact section */
+  margin-top: 5rem; /* memberikan jarak antara baris dan elemen sebelumnya dalam contact section untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih rapi pada contact section */
+  background-color: #222; /* memberikan warna latar belakang untuk contact section */
+}
+
+.contact .row .map {
+  flex: 1 1 45rem; /* memberikan fleksibilitas pada elemen map dalam contact section untuk menyesuaikan ukuran dan menjaga proporsi yang baik, dengan basis ukuran 45rem */
+  width: 100%; /* membuat elemen map mengambil seluruh lebar kontainer untuk memastikan bahwa elemen map ditampilkan dengan baik dan responsif pada berbagai ukuran layar */  
+  object-fit: cover; /* memastikan bahwa elemen map tetap proporsional dan tidak terdistorsi saat diubah ukurannya pada berbagai ukuran layar */  
+}
+
+.contact .row form {
+  flex: 1 1 45rem; /* memberikan fleksibilitas pada elemen form dalam contact section untuk menyesuaikan ukuran dan menjaga proporsi yang baik, dengan basis ukuran 35rem */
+  padding: 5rem 2rem; /* memberikan padding di sekitar elemen form dalam contact section untuk memberikan ruang yang cukup antara elemen form dan elemen lainnya, dengan 2rem untuk semua sisi */
+  text-align: center; /* mengatur teks dalam elemen form agar rata tengah untuk memberikan tampilan yang lebih seimbang dan menarik pada form dalam contact section */
+}
+
+.contact .row form .input-group {
+  display: flex; /* menggunakan flexbox untuk mengatur tata letak elemen-elemen dalam input-group */
+  margin-top: 2rem; /* memberikan jarak antara input-group dan elemen sebelumnya dalam form untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih rapi pada form dalam contact section */
+  background-color: var(--bg);
+  padding-left: 2rem; /* memberikan padding di sekitar input dalam input-group untuk memberikan ruang yang cukup antara teks dan elemen lainnya, dengan 2rem untuk kiri dan kanan */
+  border: 1px solid #eee; /* memberikan border pada input dalam input-group untuk memberikan tampilan yang lebih menarik dan membedakan input dari elemen lainnya dalam form */
+  align-items: center; /* menyelaraskan elemen-elemen dalam input-group secara vertikal untuk memberikan tampilan yang lebih rapi pada form dalam contact section */
+}
+
+.contact .row form .input-group input {
+  width: 100%; /* membuat input dalam input-group mengambil seluruh lebar kontainer untuk memastikan bahwa input ditampilkan dengan baik dan responsif pada berbagai ukuran layar */
+  padding: 2rem; /* memberikan padding di sekitar teks dalam input untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih menarik pada input dalam form */
+  background: none; /* menghilangkan warna latar belakang pada input dalam input-group untuk memberikan tampilan yang lebih bersih dan modern pada form dalam contact section */
+  font-size: 1.7rem;
+  color: white;
+}
+
+.contact .row form .btn{ /* mengatur gaya untuk tombol submit dalam form pada contact section */
+  margin-top: 3rem; /* memberikan jarak antara tombol submit dan elemen sebelumnya dalam form untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih rapi pada form dalam contact section */
+  display: inline-block; /* menampilkan tombol submit sebagai elemen inline untuk menjaga tata letak yang rapi pada form dalam contact section */
+  padding: 1rem 3rem; /* memberikan padding di sekitar teks dalam tombol submit*/
+  font-size: 1.7rem;
+  color: white;
+  background-color: var(--primary); /* memberikan warna latar belakang pada tombol submit untuk membuat tombol lebih menonjol dan menarik perhatian pengguna dalam form */
+  cursor: pointer; /* mengubah kursor menjadi pointer saat hover pada tombol submit untuk memberikan umpan balik visual kepada pengguna bahwa tombol dapat diklik */
+}
+
+/* footer */
+footer { /* mengatur gaya untuk elemen footer pada halaman */
+  text-align: center; /* mengatur teks dalam footer agar rata tengah untuk memberikan tampilan yang lebih seimbang dan menarik pada footer */
+  padding: 1rem 0; /* memberikan padding di sekitar teks dalam footer untuk memberikan ruang yang cukup antara teks dan elemen lainnya, dengan 2rem untuk atas dan bawah, dan 7% untuk kiri dan kanan */
+  background-color: var(--primary); /* memberikan warna latar belakang untuk footer */
+  margin-top: 3rem; /* memberikan jarak antara footer dan elemen sebelumnya untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih rapi pada footer */
+  padding: 1rem 0 3rem; /* memberikan padding di sekitar teks dalam footer untuk memberikan ruang yang cukup antara teks dan elemen lainnya, dengan 1rem untuk atas, 3rem untuk bawah, dan 0 untuk kiri dan kanan */
+}
+
+footer .socials { /* mengatur gaya untuk ikon-ikon sosial media dalam footer */
+  margin: 1rem 0; /* memberikan jarak antara ikon-ikon sosial media dan elemen lainnya dalam footer untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih rapi pada ikon-ikon sosial media dalam footer */
+}
+
+footer .socials a { /* mengatur gaya untuk setiap ikon sosial media dalam footer */
+  margin: 1rem; /* memberikan jarak horizontal antara ikon-ikon sosial media dalam footer untuk memberikan tampilan yang lebih seimbang dan menarik pada ikon-ikon sosial media dalam footer */
+  color: white;
+}
+
+footer .socials a:hover { /* memberikan efek hover pada ikon-ikon sosial media dalam footer untuk meningkatkan interaktivitas dan memberikan umpan balik visual kepada pengguna */
+  color: var(--bg);
+}
+
+footer .links a:hover { /* memberikan efek hover pada link dalam footer untuk meningkatkan interaktivitas dan memberikan umpan balik visual kepada pengguna */
+  color: var(--bg);
+}
+
+footer .links { /* mengatur gaya untuk bagian link dalam footer */
+  margin-bottom: 1.4rem; /* memberikan jarak antara bagian link dan elemen lainnya dalam footer untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih rapi pada bagian link dalam footer */
+}
+
+footer .links a{
+  color: white;
+  padding: 0.7rem 1rem; /* memberikan padding di sekitar teks dalam link untuk meningkatkan keterbacaan dan memberikan tampilan yang lebih menarik pada link dalam footer */
+}
+
+footer .credit{
+  font-size: 0.8rem;
+}
+
+footer .credit a{
+  color: var(--bg);
+  font-weight: 700;
+}
+
+/* Media Queries */
+
+/* Laptop */
+/* mengubah gaya untuk tampilan laptop dengan lebar maksimum 1366px */
+@media (max-width: 1366px) {
+  html {
+    font-size: 75%;
+  }
+}
+
+/* Tablet */
+/* mengubah gaya untuk tampilan tablet dengan lebar maksimum 758px */
+@media (max-width: 758px) {
+  html {
+    font-size: 62.5%;
+  }
+
+  /* mengubah gaya untuk ikon hamburger menu pada tampilan tablet */
+  #hamburger-menu {
+    display: inline-block; /* menampilkan ikon hamburger menu pada tampilan tablet */
+  }
+
+  /* mengubah gaya untuk link navigasi utama pada tampilan tablet */
+  .navbar .navbar-nav {
+    position: absolute; /* mengubah posisi link navigasi utama menjadi absolute untuk menempatkannya di luar alur normal dokumen */
+    top: 100%; /* menempatkan link navigasi utama tepat di bawah navbar */
+    right: -100%; /* menyembunyikan link navigasi utama dengan menggesernya ke kanan */
+    background-color: white; /* memberikan warna latar belakang dengan sedikit transparansi untuk efek visual yang lebih menarik */
+    width: 30rem; /* membuat link navigasi utama mengambil seluruh lebar layar */
+    height: 100vh; /* membuat link navigasi utama mengambil seluruh tinggi layar */
+    transition: 0.3s; /* menambahkan efek transisi untuk perubahan posisi saat mengaktifkan menu */
+  }
+
+  /* mengubah gaya untuk link navigasi utama saat menu diaktifkan */
+  .navbar .navbar-nav.active {
+    right: 0; /* menampilkan link navigasi utama dengan menggesernya kembali ke posisi semula */
+  }
+
+  /* mengubah gaya untuk link navigasi utama pada tampilan tablet */
+  .navbar .navbar-nav a {
+    color: var(
+      --bg
+    ); /* mengubah warna link navigasi utama menjadi hitam untuk kontras dengan latar belakang putih pada tampilan tablet */
+    font-size: 2rem; /* mengatur ukuran font untuk link navigasi utama agar lebih besar pada tampilan tablet */
+    display: block; /* menampilkan link navigasi utama sebagai blok untuk membuatnya lebih mudah diklik pada tampilan tablet */
+    padding: 0.5rem; /* memberikan padding di sekitar link navigasi utama untuk meningkatkan area klik pada tampilan tablet */
+    margin: 1.5rem; /* memberikan jarak vertikal antara link navigasi utama untuk membuatnya lebih mudah dibedakan pada tampilan tablet */
+  }
+
+  /* mengubah gaya elemen pseudo ::after untuk membuat garis bawah yang muncul saat link navigasi utama dihover pada tampilan tablet */
+  .navbar .navbar-nav a::after {
+    transform-origin: 0 0; /* mengubah titik asal transformasi menjadi sudut kiri atas untuk membuat garis bawah muncul dari kiri ke kanan saat hover pada tampilan tablet */
+  }
+
+  /* mengubah gaya untuk baris dalam about section pada tampilan tablet */
+  .about .row {
+    flex-wrap: wrap; /* memungkinkan elemen-elemen dalam about section untuk membungkus ke baris baru jika tidak muat dalam satu baris pada tampilan tablet */
+  }
+
+  /* mengubah gaya untuk elemen gambar dalam about section pada tampilan tablet */
+  .about .row .about-img img {
+    height: 24rem; /* memberikan tinggi tetap pada gambar dalam about section untuk memastikan bahwa gambar tetap proporsional dan tidak terlalu besar pada tampilan tablet */
+    object-fit: cover; /* memastikan bahwa gambar dalam about section tetap proporsional dan tidak terdistorsi saat diubah ukurannya pada tampilan tablet */
+    object-position: center; /* memastikan bahwa gambar dalam about section tetap diposisikan di tengah saat diubah ukurannya pada tampilan tablet */
+  }
+
+  /* mengubah gaya untuk konten dalam about section pada tampilan tablet */
+  .about .row .content {
+    padding: 0; /* memberikan padding di sekitar konten dalam about section untuk memberikan ruang yang cukup antara teks dan elemen lainnya, dengan 1rem untuk atas dan bawah pada tampilan tablet */
+  }
+
+  /* mengatur gaya untuk subjudul dalam about section pada tampilan tablet */
+  .about .row .content h3 {
+    font-size: 1.6rem; /* mengatur ukuran font untuk subjudul dalam about section agar lebih kecil pada tampilan tablet */
+  }
+
+/* mengatur gaya untuk paragraf dalam menu section pada tampilan tablet */
+  .menu p { 
+    font-size: 1.2rem; /* mengatur ukuran font untuk paragraf dalam menu section agar lebih kecil pada tampilan tablet */
+  }
+
+  .contact .row {
+    flex-wrap: wrap; /* memungkinkan elemen-elemen dalam contact section untuk membungkus ke baris baru jika tidak muat dalam satu baris pada tampilan tablet */
+  }
+
+  .contact .row .map {
+    height: 30rem; /* memberikan tinggi tetap pada elemen map dalam contact section untuk memastikan bahwa elemen map tetap proporsional dan tidak terlalu besar pada tampilan tablet */
+  }
+
+  .contact .row form {
+    padding-top: 0; /* memberikan padding di sekitar elemen form dalam contact section untuk memberikan ruang yang cukup antara elemen form dan elemen lainnya, dengan 2rem untuk semua sisi pada tampilan tablet */
+  }
+
+  /* Mobile Phone */
+  /* mengubah gaya untuk tampilan ponsel dengan lebar maksimum 450px */
+  @media (max-width: 450px) {
+    html {
+      font-size: 55%;
+    }
+  }
+}

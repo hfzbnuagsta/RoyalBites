@@ -1,0 +1,36 @@
+{
+  "name": "royal-bites",
+  "version": "1.0.0",
+  "description": "Website pemesanan makanan Royal Bites untuk UMKM: katalog, keranjang, checkout, dan dashboard admin.",
+  "main": "src/server.js",
+  "private": true,
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node scripts/start.js",
+    "dev": "node --watch src/server.js",
+    "migrate": "node scripts/migrate.js",
+    "seed:products": "node scripts/seed-products.js",
+    "mock:pay": "node scripts/mock-pay.js",
+    "admin:create": "node scripts/create-admin.js",
+    "check": "node scripts/check-syntax.js",
+    "test": "node --test --test-concurrency=1 \"test/**/*.test.js\"",
+    "test:unit": "node --test \"test/unit/**/*.test.js\"",
+    "test:e2e": "node test/e2e/run.mjs"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.7",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.1",
+    "feather-icons": "^4.29.2",
+    "helmet": "^8.3.0",
+    "multer": "^2.4.0",
+    "mysql2": "^3.24.5",
+    "zod": "^3.25.76"
+  },
+  "type": "module"
+}

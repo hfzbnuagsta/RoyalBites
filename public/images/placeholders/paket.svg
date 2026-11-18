@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Foto menu belum tersedia">
+  <rect width="400" height="300" fill="#1f1f1f"/>
+  <g fill="none" stroke="#6b5a47" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M120 105h160l14 95a12 12 0 0 1-12 14H118a12 12 0 0 1-12-14z"/>
+    <path d="M160 105V92a40 40 0 0 1 80 0v13"/>
+    <path d="M178 150l16 16 30-34"/>
+  </g>
+  <text x="200" y="250" text-anchor="middle" font-family="Poppins, Arial, sans-serif" font-size="18" fill="#9a8a78">Paket Hemat · foto belum tersedia</text>
+</svg>

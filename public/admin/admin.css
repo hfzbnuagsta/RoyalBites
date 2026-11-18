@@ -1,0 +1,576 @@
+/* Tampilan khusus dashboard admin. Komponen dasar (tombol, dialog, form, toast) memakai /css/style.css. */
+
+/* Dashboard memakai ukuran dasar tetap (1rem = 10px) supaya tabel & formulir padat dan konsisten di semua layar. */
+html {
+  font-size: 62.5%;
+  scroll-padding-top: 2rem;
+}
+body.admin {
+  min-height: 100vh;
+  font-size: 1.4rem;
+}
+
+/* ------------------------------------------------------------ Login */
+.login-view {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+}
+.login-card {
+  width: min(42rem, 100%);
+  padding: 3rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.login-brand {
+  font-size: 3.2rem;
+  font-style: italic;
+  font-weight: 800;
+  text-align: center;
+}
+.login-brand span,
+.admin-brand span {
+  color: var(--primary);
+}
+.login-subtitle {
+  margin: 0.4rem 0 2.4rem;
+  text-align: center;
+  color: var(--text-soft);
+  font-size: 1.5rem;
+}
+.login-hint {
+  margin-top: 1.6rem;
+  text-align: center;
+}
+code {
+  padding: 0.1rem 0.5rem;
+  background: #222;
+  border-radius: 0.4rem;
+  font-size: 0.95em;
+}
+
+/* ------------------------------------------------------------ Kerangka */
+.admin-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding: 1.4rem 2.4rem;
+  background: #0b0b0b;
+  border-bottom: 1px solid #513c28;
+}
+.admin-brand {
+  font-size: 2.4rem;
+  font-style: italic;
+  font-weight: 800;
+}
+.admin-brand small {
+  margin-left: 0.6rem;
+  font-size: 1.3rem;
+  font-style: normal;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.admin-user {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+}
+.whoami {
+  margin-right: 0.8rem;
+  font-size: 1.3rem;
+  color: var(--text-soft);
+}
+.btn-small {
+  min-height: 40px;
+  padding: 0.6rem 1.4rem;
+  font-size: 1.3rem;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0 2.4rem;
+  overflow-x: auto;
+  background: #0b0b0b;
+  border-bottom: 1px solid var(--line);
+}
+.tab {
+  min-height: 48px;
+  padding: 1rem 1.8rem;
+  border-bottom: 3px solid transparent;
+  color: var(--text-soft);
+  font-size: 1.4rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.tab:hover {
+  color: #fff;
+}
+.tab[aria-current="page"] {
+  color: #fff;
+  border-bottom-color: var(--primary);
+}
+.tab-badge {
+  display: inline-block;
+  min-width: 2rem;
+  margin-left: 0.4rem;
+  padding: 0 0.6rem;
+  border-radius: 1rem;
+  background: var(--primary-strong);
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 2rem;
+  text-align: center;
+}
+
+.admin-main {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 2.4rem;
+  outline: none;
+}
+.admin-main h1 {
+  font-size: 2.4rem;
+  margin-bottom: 0.4rem;
+}
+.page-note {
+  margin-bottom: 2rem;
+  font-size: 1.3rem;
+  color: var(--text-muted);
+}
+.page-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+.loading,
+.empty-state {
+  padding: 4rem 1rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+.error-state {
+  padding: 2rem;
+  border: 1px solid var(--danger);
+  background: #2a1212;
+  border-radius: 0.8rem;
+}
+.error-state button {
+  margin-top: 1rem;
+}
+
+/* ------------------------------------------------------------ Filter */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+.filters .field {
+  margin: 0;
+}
+.filters label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+}
+.filters input,
+.filters select,
+.field select {
+  min-height: 44px;
+  padding: 0.8rem 1rem;
+  background: #0d0d0d;
+  border: 1px solid #6b6b6b;
+  border-radius: 0.6rem;
+  font-size: 1.4rem;
+}
+.field select {
+  width: 100%;
+}
+.field input[type="number"] {
+  width: 100%;
+  padding: 1.1rem 1.3rem;
+  background: #0d0d0d;
+  border: 1px solid #6b6b6b;
+  border-radius: 0.6rem;
+  font-size: 1.6rem;
+}
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+.check {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 40px;
+  font-size: 1.4rem;
+}
+.check input {
+  width: 1.8rem;
+  height: 1.8rem;
+  accent-color: var(--primary);
+}
+
+/* ------------------------------------------------------------ Kartu ringkasan */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 2.4rem;
+}
+.stat {
+  padding: 1.6rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+}
+.stat .label {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+}
+.stat .value {
+  margin: 0.4rem 0;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+.stat .note {
+  font-size: 1.15rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+.stat.queue button {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+.section-title {
+  margin: 2.4rem 0 1rem;
+  font-size: 1.8rem;
+}
+.split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+  gap: 2rem;
+}
+.bar-row {
+  display: grid;
+  grid-template-columns: 9rem 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  font-size: 1.3rem;
+}
+.bar-row progress {
+  width: 100%;
+  height: 1.2rem;
+  accent-color: var(--primary);
+}
+
+/* ------------------------------------------------------------ Tabel */
+.table-wrap {
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+}
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.35rem;
+}
+table.data th,
+table.data td {
+  padding: 1.1rem 1.2rem;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--line);
+}
+table.data th {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+table.data tr:last-child td {
+  border-bottom: 0;
+}
+table.data td.num,
+table.data th.num {
+  text-align: right;
+  white-space: nowrap;
+}
+table.data tr.is-deleted td {
+  opacity: 0.55;
+}
+.thumb {
+  width: 4.8rem;
+  height: 4.8rem;
+  object-fit: cover;
+  border-radius: 0.6rem;
+  background: #222;
+}
+.cell-sub {
+  display: block;
+  font-size: 1.15rem;
+  color: var(--text-muted);
+}
+.row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: flex-end;
+}
+
+.pill {
+  display: inline-block;
+  padding: 0.2rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 2rem;
+  font-size: 1.15rem;
+  white-space: nowrap;
+}
+.pill.ok {
+  border-color: #2f7a4b;
+  color: #7ee2a0;
+}
+.pill.warn {
+  border-color: #8a6a2b;
+  color: #f2c97e;
+}
+.pill.bad {
+  border-color: #8a3030;
+  color: #ff9b9b;
+}
+.pill.info {
+  border-color: #3a5f8a;
+  color: #9cc4f2;
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.2rem;
+  font-size: 1.3rem;
+  color: var(--text-muted);
+}
+.pager .buttons {
+  display: flex;
+  gap: 0.6rem;
+}
+
+/* ------------------------------------------------------------ Detail pesanan */
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1.2rem 2rem;
+  margin-bottom: 1.6rem;
+}
+.detail-grid dt {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+}
+.detail-grid dd {
+  margin: 0 0 0.4rem;
+  font-size: 1.4rem;
+  overflow-wrap: anywhere;
+}
+.panel {
+  margin-top: 1.6rem;
+  padding: 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+}
+.panel h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+.inline-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+}
+.inline-form .field {
+  margin: 0;
+  flex: 1 1 18rem;
+}
+.inline-form .field input[type="text"],
+.inline-form .field select {
+  width: 100%;
+}
+.timeline {
+  list-style: none;
+  font-size: 1.3rem;
+}
+.timeline li {
+  padding: 0.6rem 0;
+  border-bottom: 1px dashed var(--line);
+}
+.timeline time {
+  display: block;
+  font-size: 1.15rem;
+  color: var(--text-muted);
+}
+
+/* ------------------------------------------------------------ Produk & pengaturan */
+.image-field {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+.image-preview {
+  width: 9.6rem;
+  height: 9.6rem;
+  object-fit: cover;
+  border-radius: 0.8rem;
+  background: #222;
+}
+input[type="file"] {
+  max-width: 100%;
+  font-size: 1.3rem;
+}
+.settings-form fieldset {
+  margin-bottom: 2rem;
+  padding: 1.6rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--surface);
+}
+.settings-form legend {
+  padding: 0 0.8rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+.settings-form .field input[type="text"],
+.settings-form .field input[type="number"],
+.settings-form .field textarea {
+  width: 100%;
+}
+.sticky-actions {
+  position: sticky;
+  bottom: 0;
+  padding: 1.2rem 0;
+  background: linear-gradient(transparent, #000 40%);
+}
+
+/* ------------------------------------------------------------ Pesan masuk */
+.message {
+  margin-bottom: 1rem;
+  padding: 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--primary);
+  border-radius: 0.8rem;
+}
+.message.read {
+  border-left-color: var(--line);
+  opacity: 0.8;
+}
+.message header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.25rem;
+  color: var(--text-muted);
+}
+.message header strong {
+  color: #fff;
+  font-size: 1.5rem;
+}
+.message p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 640px) {
+  .admin-header,
+  .admin-main {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+  .admin-tabs {
+    padding: 0 1rem;
+  }
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+  .bar-row {
+    grid-template-columns: 7rem 1fr auto;
+  }
+  .login-card {
+    padding: 2rem;
+  }
+}
+
+/* ------------------------------------------------------------ Pembayaran QRIS, peringatan, & rincian gateway */
+.callout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.6rem;
+  margin: 0 0 1.4rem;
+  padding: 1.2rem 1.6rem;
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+  background: #111;
+  font-size: 1.35rem;
+}
+.callout p {
+  flex: 1 1 28rem;
+}
+.callout.ok {
+  border-color: #2f7a4b;
+}
+.callout.warn {
+  border-color: #8a6a2b;
+  background: #1f1a0f;
+}
+.callout.bad {
+  border-color: #8a3030;
+  background: #241212;
+}
+.callout.info {
+  border-color: #3a5f8a;
+  background: #10181f;
+}
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1.15rem;
+  overflow-wrap: anywhere;
+}
+.gateway-block {
+  margin: 1.4rem 0;
+}
+.notifications {
+  margin-top: 1rem;
+  font-size: 1.3rem;
+}
+.notifications summary {
+  cursor: pointer;
+  min-height: 36px;
+  padding: 0.6rem 0;
+  color: var(--primary);
+}
+.cell-sub.mono {
+  display: block;
+}

@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Royal Bites</title>
+    <meta
+      name="description"
+      content="Royal Bites menyajikan kuliner dan jajanan tradisional Nusantara. Lihat menu, pilih favoritmu, dan pesan langsung secara online."
+    />
+    <meta name="theme-color" content="#000000" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- Font Poppins (Google Fonts) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <!-- Ikon Feather disajikan dari server sendiri (bukan CDN pihak ketiga) -->
+    <script src="/vendor/feather.min.js" defer></script>
+    <script type="module" src="/js/main.js"></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#menu">Lewati ke daftar menu</a>
+
+    <!-- ===================== NAVBAR ===================== -->
+    <header class="navbar">
+      <a href="#home" class="navbar-logo" aria-label="Royal Bites, kembali ke beranda">
+        <img id="logo-img" class="navbar-logo-img" alt="" hidden />
+        <span id="logo-text">Royal <span>Bites</span></span>
+      </a>
+
+      <nav id="navbar-nav" class="navbar-nav" aria-label="Navigasi utama">
+        <a class="nav-link" href="#home">Home</a>
+        <a class="nav-link" href="#about">About Us</a>
+        <a class="nav-link" href="#menu">Menu</a>
+        <a class="nav-link" href="#contact">Contact</a>
+        <a class="nav-track" href="/track.html">Track Order</a>
+      </nav>
+
+      <div class="navbar-ext">
+        <button type="button" id="search-btn" class="icon-btn" aria-label="Cari menu" aria-expanded="false" aria-controls="search-panel">
+          <i data-feather="search"></i>
+        </button>
+        <button type="button" id="cart-btn" class="icon-btn" aria-label="Buka keranjang belanja">
+          <i data-feather="shopping-cart"></i>
+          <span id="cart-count" class="badge" hidden>0</span>
+        </button>
+        <button type="button" id="hamburger-menu" class="icon-btn" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="navbar-nav">
+          <i data-feather="menu"></i>
+        </button>
+      </div>
+
+      <!-- Panel pencarian -->
+      <div id="search-panel" class="search-panel" hidden>
+        <form id="search-form" role="search" class="search-form">
+          <label for="search-input" class="sr-only">Cari menu</label>
+          <i data-feather="search" aria-hidden="true"></i>
+          <input id="search-input" type="search" placeholder="Cari menu favoritmu…" autocomplete="off" maxlength="60" />
+          <button type="button" id="close-search" class="icon-btn" aria-label="Tutup pencarian">
+            <i data-feather="x"></i>
+          </button>
+        </form>
+      </div>
+    </header>
+
+    <!-- Lapisan gelap di belakang menu navigasi versi mobile -->
+    <div id="page-overlay" class="page-overlay" hidden></div>
+
+    <main id="main">
+      <!-- ===================== HERO ===================== -->
+      <section class="hero" id="home">
+        <div class="content">
+          <h1>Selamat Datang di <span id="hero-title">Royal <span>Bites</span></span></h1>
+          <p id="hero-description">
+            Nikmati kelezatan kuliner Nusantara dengan sentuhan modern yang menggugah selera. Temukan cita rasa unik
+            dari jajanan tradisional Indonesia yang melegenda.
+          </p>
+          <a href="#menu" class="cta">Pesan Sekarang</a>
+        </div>
+      </section>
+
+      <!-- ===================== TENTANG KAMI ===================== -->
+      <section class="about" id="about" aria-labelledby="about-title">
+        <h2 id="about-title"><span>About</span> Us</h2>
+        <div class="row">
+          <div class="about-img">
+            <img
+              id="about-img"
+              src="/images/about.jpg"
+              alt="Aneka jajanan tradisional Nusantara"
+              loading="lazy"
+              width="640"
+              height="427"
+            />
+          </div>
+          <div class="content">
+            <h3>Dari Selera yang Beragam, Untuk Momen yang Istimewa</h3>
+            <p>
+              Royal Bites hadir untuk menghadirkan pengalaman kuliner dengan beragam pilihan hidangan yang dapat dinikmati dalam berbagai suasana. Kami memadukan inspirasi kuliner lokal dan internasional, mulai dari makanan tradisional hingga sajian modern, camilan, dan minuman favorit.
+            </p>
+            <p>
+              Kami percaya bahwa makanan bukan sekadar kebutuhan, tetapi juga bagian dari momen kebersamaan. Melalui pilihan menu yang beragam dan cita rasa yang menggugah selera, Royal Bites ingin menjadikan setiap kunjungan sebagai pengalaman yang menyenangkan dan berkesan.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== MENU ===================== -->
+      <section class="menu" id="menu" aria-labelledby="menu-title">
+        <h2 id="menu-title"><span>Menu</span> Kami</h2>
+        <p class="menu-subtitle">Pilih kategori makanan favoritmu dan temukan cita rasa Nusantara.</p>
+
+        <!-- Muncul jika pemilik menutup pemesanan online -->
+        <div id="order-banner" class="order-banner" role="status" hidden></div>
+
+        <div class="category-buttons" id="category-buttons" role="group" aria-label="Filter kategori menu">
+          <button type="button" class="category-btn active" data-category="all" aria-pressed="true">Semua</button>
+        </div>
+
+        <div class="menu-toolbar">
+          <p id="menu-count" class="menu-count" aria-live="polite"></p>
+          <div class="sort-control">
+            <label for="sort-select">Urutkan</label>
+            <select id="sort-select">
+              <option value="default">Rekomendasi</option>
+              <option value="price-asc">Harga: termurah</option>
+              <option value="price-desc">Harga: termahal</option>
+              <option value="name-asc">Nama: A–Z</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row" id="menu-grid"></div>
+
+        <!-- Status: memuat / gagal / tidak ada hasil -->
+        <div id="menu-status" class="menu-status" role="status" hidden></div>
+      </section>
+
+      <!-- ===================== KONTAK ===================== -->
+      <section class="contact" id="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title"><span>Contact</span> Us</h2>
+
+        <!-- Diisi dari pengaturan bisnis (blok yang kosong tidak ditampilkan) -->
+        <div class="contact-info" id="contact-info" hidden>
+          <div class="info-card" id="info-address" hidden>
+            <i data-feather="map-pin" aria-hidden="true"></i>
+            <div><h3>Alamat</h3><p></p></div>
+          </div>
+          <div class="info-card" id="info-hours" hidden>
+            <i data-feather="clock" aria-hidden="true"></i>
+            <div><h3>Jam Operasional</h3><p></p></div>
+          </div>
+          <div class="info-card" id="info-whatsapp" hidden>
+            <i data-feather="phone" aria-hidden="true"></i>
+            <div><h3>WhatsApp</h3><p><a href="#" target="_blank" rel="noopener noreferrer"></a></p></div>
+          </div>
+          <div class="info-card" id="info-delivery" hidden>
+            <i data-feather="truck" aria-hidden="true"></i>
+            <div><h3>Area Pengantaran</h3><p></p></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <iframe
+            title="Peta lokasi Royal Bites di Google Maps"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15860.043428722282!2d107.11225600000002!3d-6.392599999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6999ee110e7d1f%3A0xa1db099ed9bfa5df!2sPasar%20Mega%20Regency!5e0!3m2!1sid!2sid!4v1775040169466!5m2!1sid!2sid"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            class="map"
+          ></iframe>
+
+          <form id="contact-form" class="contact-form" novalidate>
+            <p class="form-intro">Ada pertanyaan atau masukan? Tinggalkan pesan, kami akan membalasnya.</p>
+
+            <div class="field">
+              <div class="input-group">
+                <i data-feather="user" aria-hidden="true"></i>
+                <label for="contact-name" class="sr-only">Nama</label>
+                <input id="contact-name" name="name" type="text" placeholder="Nama" autocomplete="name" maxlength="100" required aria-describedby="contact-name-error" />
+              </div>
+              <p class="field-error" id="contact-name-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <div class="input-group">
+                <i data-feather="mail" aria-hidden="true"></i>
+                <label for="contact-email" class="sr-only">Email (opsional)</label>
+                <input id="contact-email" name="email" type="email" placeholder="Email (opsional)" autocomplete="email" maxlength="150" aria-describedby="contact-email-error" />
+              </div>
+              <p class="field-error" id="contact-email-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <div class="input-group">
+                <i data-feather="phone" aria-hidden="true"></i>
+                <label for="contact-phone" class="sr-only">Telepon / WhatsApp (opsional)</label>
+                <input id="contact-phone" name="phone" type="tel" inputmode="tel" placeholder="Telepon / WhatsApp (opsional)" autocomplete="tel" maxlength="20" aria-describedby="contact-phone-error" />
+              </div>
+              <p class="field-error" id="contact-phone-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <div class="input-group input-group-top">
+                <i data-feather="message-square" aria-hidden="true"></i>
+                <label for="contact-message" class="sr-only">Pesan</label>
+                <textarea id="contact-message" name="message" rows="4" placeholder="Tulis pesan Anda" maxlength="1000" required aria-describedby="contact-message-error"></textarea>
+              </div>
+              <p class="field-error" id="contact-message-error" role="alert"></p>
+            </div>
+
+            <!-- Jebakan untuk bot: manusia tidak melihat/mengisinya -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="contact-website">Jangan diisi</label>
+              <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <p class="form-feedback" id="contact-feedback" role="status"></p>
+            <button type="submit" class="btn" id="contact-submit">Kirim Pesan</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="socials" id="footer-socials" hidden></div>
+
+        <div class="links">
+          <a href="#home">Home</a>
+          <a href="#menu">Menu</a>
+          <a href="#about">Tentang Kami</a>
+          <a href="#contact">Kontak</a>
+          <a href="/track.html">Lacak Pesanan</a>
+        </div>
+
+        <div class="credit">
+          <p>Created by HafizBanuAgusta | &copy; 2026</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===================== KERANJANG (laci kanan) ===================== -->
+    <dialog id="cart-drawer" class="drawer" aria-labelledby="cart-title">
+      <div class="drawer-inner">
+        <div class="drawer-header">
+          <h2 id="cart-title">Keranjang Belanja</h2>
+          <button type="button" id="close-cart" class="icon-btn" aria-label="Tutup keranjang"><i data-feather="x"></i></button>
+        </div>
+
+        <div id="cart-notice" class="cart-notice" role="status" hidden></div>
+        <div id="cart-items" class="cart-items"></div>
+
+        <div class="drawer-footer" id="cart-footer">
+          <div class="cart-total">
+            <span>Subtotal</span>
+            <strong id="cart-total-price">Rp0</strong>
+          </div>
+          <p class="cart-hint" id="cart-hint">Ongkos kirim (jika diantar) dihitung saat checkout.</p>
+          <button type="button" id="checkout-btn" class="checkout-btn">Lanjut ke Pemesanan</button>
+          <button type="button" id="clear-cart-btn" class="link-btn">Kosongkan keranjang</button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- ===================== DETAIL PRODUK ===================== -->
+    <dialog id="product-dialog" class="modal" aria-labelledby="product-dialog-title">
+      <div class="modal-inner product-detail">
+        <button type="button" class="icon-btn modal-close" data-close aria-label="Tutup detail"><i data-feather="x"></i></button>
+        <img id="pd-image" class="pd-image" alt="" width="400" height="300" />
+        <div class="pd-body">
+          <p id="pd-category" class="pd-category"></p>
+          <h2 id="product-dialog-title"></h2>
+          <p id="pd-description" class="pd-description"></p>
+          <p id="pd-price" class="menu-card-price"></p>
+          <p id="pd-availability" class="pd-availability"></p>
+          <div class="pd-actions">
+            <div class="qty-stepper" role="group" aria-label="Jumlah">
+              <button type="button" id="pd-minus" class="quantity-btn" aria-label="Kurangi jumlah">−</button>
+              <output id="pd-qty" aria-live="polite">1</output>
+              <button type="button" id="pd-plus" class="quantity-btn" aria-label="Tambah jumlah">+</button>
+            </div>
+            <button type="button" id="pd-add" class="add-to-cart-btn">Tambah ke Keranjang</button>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- ===================== CHECKOUT ===================== -->
+    <dialog id="checkout-dialog" class="modal modal-wide" aria-labelledby="checkout-title">
+      <div class="modal-inner">
+        <button type="button" class="icon-btn modal-close" data-close aria-label="Tutup"><i data-feather="x"></i></button>
+
+        <!-- Tampilan 1: formulir pemesanan -->
+        <form id="checkout-form" novalidate>
+          <h2 id="checkout-title">Data Pemesanan</h2>
+          <div id="checkout-alert" class="form-alert" role="alert" hidden></div>
+
+          <div class="field">
+            <label for="co-name">Nama lengkap</label>
+            <input id="co-name" name="customer_name" type="text" autocomplete="name" maxlength="100" required aria-describedby="co-name-error" />
+            <p class="field-error" id="co-name-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="co-phone">Nomor WhatsApp</label>
+            <input id="co-phone" name="customer_phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Contoh: 081234567890" maxlength="20" required aria-describedby="co-phone-hint co-phone-error" />
+            <p class="field-hint" id="co-phone-hint">Dipakai untuk konfirmasi pesanan.</p>
+            <p class="field-error" id="co-phone-error"></p>
+          </div>
+
+          <fieldset class="field choice-group" id="co-fulfillment-group">
+            <legend>Pengambilan</legend>
+            <div id="co-fulfillment-options" class="choices"></div>
+            <p class="field-hint" id="co-delivery-hint" hidden></p>
+            <p class="field-error" id="co-fulfillment-error"></p>
+          </fieldset>
+
+          <div class="field" id="co-address-field" hidden>
+            <label for="co-address">Alamat pengantaran</label>
+            <textarea id="co-address" name="delivery_address" rows="3" maxlength="300" autocomplete="street-address" aria-describedby="co-address-error"></textarea>
+            <p class="field-error" id="co-address-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="co-notes">Catatan (opsional)</label>
+            <textarea id="co-notes" name="customer_notes" rows="2" maxlength="500" placeholder="Misal: tidak pakai pedas" aria-describedby="co-notes-error"></textarea>
+            <p class="field-error" id="co-notes-error"></p>
+          </div>
+
+          <fieldset class="field choice-group" id="co-payment-group">
+            <legend>Pembayaran</legend>
+            <div id="co-payment-options" class="choices"></div>
+            <p class="field-hint" id="co-payment-info" hidden></p>
+            <p class="field-error" id="co-payment-error"></p>
+          </fieldset>
+
+          <section class="order-summary" aria-labelledby="summary-title">
+            <h3 id="summary-title">Ringkasan Pesanan</h3>
+            <ul id="co-summary-items" class="summary-items"></ul>
+            <dl class="summary-totals">
+              <div><dt>Subtotal</dt><dd id="co-subtotal">Rp0</dd></div>
+              <div id="co-fee-row"><dt>Ongkos kirim</dt><dd id="co-fee">Rp0</dd></div>
+              <div class="grand"><dt>Total</dt><dd id="co-total">Rp0</dd></div>
+            </dl>
+            <p class="field-hint">Harga final dihitung ulang oleh server saat pesanan dibuat.</p>
+          </section>
+
+          <div class="form-actions">
+            <button type="button" class="btn-secondary" data-close>Kembali</button>
+            <button type="submit" id="co-submit" class="checkout-btn">Buat Pesanan</button>
+          </div>
+        </form>
+
+        <!-- Tampilan 2: pesanan berhasil disimpan -->
+        <div id="checkout-success" hidden>
+          <div class="success-icon" aria-hidden="true"><i data-feather="check-circle"></i></div>
+          <h2 id="success-title" tabindex="-1">Pesanan Anda Tercatat</h2>
+          <p class="success-lead">Terima kasih, <span id="success-name"></span>! Pesanan Anda sudah tersimpan di sistem kami dan menunggu konfirmasi.</p>
+
+          <div class="order-number-box">
+            <span>Nomor pesanan</span>
+            <strong id="success-number"></strong>
+            <button type="button" id="copy-order-number" class="link-btn">Salin</button>
+          </div>
+
+          <ul id="success-items" class="summary-items"></ul>
+          <dl class="summary-totals">
+            <div><dt>Subtotal</dt><dd id="success-subtotal"></dd></div>
+            <div id="success-fee-row"><dt>Ongkos kirim</dt><dd id="success-fee"></dd></div>
+            <div class="grand"><dt>Total</dt><dd id="success-total"></dd></div>
+          </dl>
+
+          <div class="success-info" id="success-payment"></div>
+          <p class="field-hint">Pembayaran baru dianggap lunas setelah kami memverifikasinya. Menekan tombol WhatsApp tidak berarti pesanan sudah dibayar.</p>
+
+          <div class="form-actions">
+            <a id="success-track" class="btn-secondary" hidden>Lacak Pesanan</a>
+            <a id="success-whatsapp" class="wa-btn" target="_blank" rel="noopener noreferrer" hidden>Konfirmasi lewat WhatsApp</a>
+            <button type="button" class="btn-secondary" data-close>Selesai</button>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- ===================== KONFIRMASI (hapus item, dll.) ===================== -->
+    <dialog id="confirm-dialog" class="modal modal-small" aria-labelledby="confirm-title" aria-describedby="confirm-message">
+      <form method="dialog" class="modal-inner confirm">
+        <h2 id="confirm-title">Konfirmasi</h2>
+        <p id="confirm-message"></p>
+        <div class="form-actions">
+          <button type="submit" value="cancel" class="btn-secondary" id="confirm-cancel">Batal</button>
+          <button type="submit" value="ok" class="danger-btn" id="confirm-ok">Ya, lanjutkan</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- Notifikasi singkat -->
+    <div id="toast" class="toast" popover="manual" role="status" aria-live="polite" aria-atomic="true"><span id="toast-message"></span></div>
+
+    <noscript>
+      <div class="noscript">Situs ini membutuhkan JavaScript untuk menampilkan menu dan memproses pesanan. Silakan aktifkan JavaScript di browser Anda.</div>
+    </noscript>
+  </body>
+</html>

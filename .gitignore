@@ -1,0 +1,25 @@
+# Dependensi
+node_modules/
+
+# Rahasia & konfigurasi lokal — JANGAN pernah di-commit
+.env
+.env.*
+!.env.example
+
+# Gambar unggahan admin (data milik bisnis, bukan bagian dari kode)
+uploads/*
+!uploads/.gitkeep
+
+# Backup database (berisi data pelanggan)
+backups/*
+!backups/.gitkeep
+*.sql.gz
+*.dump
+dump*.sql
+
+# Log & sampah sistem
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+coverage/

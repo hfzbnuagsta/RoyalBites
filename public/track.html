@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lacak Pesanan — Royal Bites</title>
+    <meta name="description" content="Pantau status pesanan dan pembayaran QRIS Anda di Royal Bites." />
+    <!-- Halaman pribadi: jangan diindeks mesin pencari, dan jangan kirim alamat halaman (berisi token) ke situs lain. -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="/vendor/feather.min.js" defer></script>
+    <script type="module" src="/js/track.js"></script>
+  </head>
+
+  <body class="track-body">
+    <a class="skip-link" href="#track-main">Lewati ke isi halaman</a>
+
+    <header class="navbar">
+      <a href="/" class="navbar-logo" aria-label="Royal Bites, kembali ke beranda">
+        <img id="logo-img" class="navbar-logo-img" alt="" hidden />
+        <span id="logo-text">Royal <span>Bites</span></span>
+      </a>
+
+      <nav id="navbar-nav" class="navbar-nav" aria-label="Navigasi utama">
+        <a class="nav-link-ext" href="/#home">Home</a>
+        <a class="nav-link-ext" href="/#menu">Menu</a>
+        <a class="nav-link-ext" href="/#contact">Kontak</a>
+        <a class="nav-track active" href="/track.html" aria-current="page">Lacak Pesanan</a>
+      </nav>
+
+      <div class="navbar-ext">
+        <button type="button" id="hamburger-menu" class="icon-btn" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="navbar-nav">
+          <i data-feather="menu"></i>
+        </button>
+      </div>
+    </header>
+    <div id="page-overlay" class="page-overlay" hidden></div>
+
+    <main id="track-main" class="track-main">
+      <h1 class="track-title"><span>Lacak</span> Pesanan</h1>
+
+      <!-- Memuat -->
+      <div id="track-loading" class="track-card track-loading" role="status" hidden>
+        <span class="spinner" aria-hidden="true"></span>
+        <p>Memuat pesanan…</p>
+      </div>
+
+      <!-- Gagal memuat (jaringan/server) -->
+      <div id="track-error" class="track-card track-error" role="alert" hidden>
+        <i data-feather="wifi-off" aria-hidden="true"></i>
+        <h2 id="track-error-title">Pesanan belum bisa dimuat</h2>
+        <p id="track-error-message"></p>
+        <div class="form-actions">
+          <button type="button" id="track-error-retry" class="btn">Coba lagi</button>
+          <button type="button" id="track-error-lookup" class="btn-secondary" hidden>Cari dengan nomor pesanan</button>
+        </div>
+      </div>
+
+      <!-- Cari dengan nomor pesanan + nomor WhatsApp (cadangan jika tautan hilang) -->
+      <section id="track-lookup" class="track-card" aria-labelledby="lookup-title" hidden>
+        <h2 id="lookup-title">Cari pesanan Anda</h2>
+        <p class="track-lead">Masukkan nomor pesanan dan nomor WhatsApp yang dipakai saat memesan. Keduanya harus cocok.</p>
+        <form id="lookup-form" novalidate>
+          <div id="lookup-alert" class="form-alert" role="alert" hidden></div>
+          <div class="field">
+            <label for="lookup-number">Nomor pesanan</label>
+            <input id="lookup-number" name="order_number" type="text" autocomplete="off" autocapitalize="characters" placeholder="Contoh: RB-261009-K7P2M" maxlength="20" required aria-describedby="lookup-number-error" />
+            <p class="field-error" id="lookup-number-error"></p>
+          </div>
+          <div class="field">
+            <label for="lookup-phone">Nomor WhatsApp</label>
+            <input id="lookup-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Contoh: 081234567890" maxlength="20" required aria-describedby="lookup-phone-error" />
+            <p class="field-error" id="lookup-phone-error"></p>
+          </div>
+          <button type="submit" id="lookup-submit" class="checkout-btn">Lacak Pesanan</button>
+        </form>
+      </section>
+
+      <!-- Hasil -->
+      <div id="track-result" hidden>
+        <section class="track-card track-head" aria-labelledby="track-number-label">
+          <div class="track-head-main">
+            <p id="track-number-label" class="track-label">Nomor pesanan</p>
+            <p class="track-number"><strong id="track-number"></strong> <button type="button" id="track-copy" class="link-btn">Salin</button></p>
+            <p id="track-meta" class="track-meta"></p>
+          </div>
+          <div class="status-pair">
+            <div class="status-item">
+              <span class="track-label">Status pembayaran</span>
+              <span id="pay-status-pill" class="pill"></span>
+            </div>
+            <div class="status-item">
+              <span class="track-label">Status pesanan</span>
+              <span id="order-status-pill" class="pill"></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Panel pembayaran QRIS -->
+        <section id="pay-panel" class="track-card pay-panel" aria-labelledby="pay-title" hidden>
+          <h2 id="pay-title">Pembayaran QRIS</h2>
+          <div id="mode-notice" class="form-alert info" role="note" hidden></div>
+          <div id="pay-body"></div>
+          <p id="pay-feedback" class="form-feedback" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="track-card" aria-labelledby="summary-title">
+          <h2 id="summary-title">Ringkasan Pesanan</h2>
+          <ul id="track-items" class="summary-items"></ul>
+          <dl class="summary-totals">
+            <div><dt>Subtotal</dt><dd id="track-subtotal"></dd></div>
+            <div id="track-fee-row"><dt>Ongkos kirim</dt><dd id="track-fee"></dd></div>
+            <div id="track-discount-row"><dt>Diskon</dt><dd id="track-discount"></dd></div>
+            <div class="grand"><dt>Total</dt><dd id="track-total"></dd></div>
+          </dl>
+          <p id="track-fulfillment" class="field-hint"></p>
+        </section>
+
+        <section class="track-card" aria-labelledby="timeline-title">
+          <h2 id="timeline-title">Riwayat</h2>
+          <ol id="track-timeline" class="track-timeline"></ol>
+        </section>
+
+        <div class="form-actions track-actions">
+          <a id="track-whatsapp" class="wa-btn" target="_blank" rel="noopener noreferrer" hidden>Hubungi lewat WhatsApp</a>
+          <a class="btn-secondary" href="/#menu">Kembali ke Menu</a>
+        </div>
+        <p class="field-hint track-note">Menekan tombol WhatsApp bukan pembayaran. Status “Lunas” hanya muncul setelah sistem menerima konfirmasi dari penyedia pembayaran.</p>
+      </div>
+    </main>
+
+    <div id="toast" class="toast" popover="manual" role="status" aria-live="polite" aria-atomic="true"><span id="toast-message"></span></div>
+
+    <noscript>
+      <div class="noscript">Halaman ini membutuhkan JavaScript untuk menampilkan status pesanan. Silakan aktifkan JavaScript di browser Anda.</div>
+    </noscript>
+  </body>
+</html>

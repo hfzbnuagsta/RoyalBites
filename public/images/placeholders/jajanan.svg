@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Foto menu belum tersedia">
+  <rect width="400" height="300" fill="#1f1f1f"/>
+  <g fill="none" stroke="#6b5a47" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="200" cy="135" r="64"/>
+    <circle cx="200" cy="135" r="20"/>
+    <path d="M160 100l8 6M232 108l8-6M158 160l9-4M236 164l8 5M200 80v8"/>
+  </g>
+  <text x="200" y="250" text-anchor="middle" font-family="Poppins, Arial, sans-serif" font-size="18" fill="#9a8a78">Jajanan · foto belum tersedia</text>
+</svg>
